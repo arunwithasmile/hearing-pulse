@@ -1,0 +1,9 @@
+.asp-avatar {
+    display: grid;
+    place-items: center;
+    width: 45px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    color: white;
+    font-weight: bold;
+}

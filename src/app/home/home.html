@@ -1,0 +1,21 @@
+<button>Add Call Record</button>
+<div class="call-list">
+    @for (call of calls; track call.fullName) {
+        <div class="asp-list-item call">
+            <asp-avatar name="{{ call.fullName }}"></asp-avatar>
+            <div style="flex-grow: 1">
+                <div class="flex-stretch">
+                    <div class="name">
+                        {{ call.fullName }}
+                    </div>
+                    <div class="time-duration">
+                        {{ call.dateTime | date }} ({{ call.duration }})
+                    </div>
+                </div>
+                <div class="asp-list-subtext">
+                    {{ call.place }}
+                </div>
+            </div>
+        </div>
+    }
+</div>

@@ -1,1 +1,102 @@
-/* You can add global styles to this file, and also import other style files */
+/* Basic CSS Reset */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  line-height: 1.5;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  margin: 0;
+}
+
+/* Remove text decoration from links */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Make images responsive */
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* Reset form elements */
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  border: none;
+  background: none;
+  color: inherit;
+  width: 100%;
+}
+
+textarea {
+  resize: vertical;
+  width: 100%;
+}
+
+* {
+  transition: all 250ms;
+}
+
+body {
+  color: #1f2937;
+  --clr-primary: #2b4f60;
+  --clr-primary-100: color-mix(in srgb, var(--clr-primary), transparent 94%);
+  --clr-primary-600: color-mix(in srgb, var(--clr-primary), black 20%);
+  --clr-secondary: #edcd8c;
+
+  --clr-text-muted: #6b7280;
+  --clr-text-subtle: #9ca3af;
+
+
+  background-color: var(--clr-primary-100);
+}
+
+.container {
+  padding-inline: 1rem;
+}
+
+button {
+  font-size: large;
+  color: white;
+  padding: 0.5rem 1.5rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 3px rgb(0 0 0 / 35%), 0 1px 8px rgb(0 0 0 / 15%);
+  cursor: pointer;
+
+  &:hover {
+    background-color: var(--clr-primary-600);
+  }
+
+  &,
+  &:active {
+    background-color: var(--clr-primary);
+  }
+}
+
+.asp-list-item {
+  padding: 0.5rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.asp-list-subtext {
+  font-size: small;
+  color: var(--clr-text-muted);
+}
+
+.flex-stretch {
+  display: flex;
+  justify-content: space-between;
+}

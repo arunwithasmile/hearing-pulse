@@ -1,0 +1,21 @@
+header {
+    font-size: 24px;
+    text-align: center;
+    font-size: 1.875rem;
+    font-weight: bold;
+    padding-block: 1.5rem;
+}
+
+.container {
+    max-width: 1020px;
+    margin: 0 auto;
+}
+
+footer {
+    text-align: center;
+    color: var(--clr-text-muted);
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding-block: 0.5rem;
+}

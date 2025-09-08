@@ -1,0 +1,16 @@
+.call-list {
+    background-color: white;
+    margin-block: 1rem;
+    border-radius: 1rem;
+    padding-block: 0.5rem;
+}
+
+.name {
+    font-size: large;
+}
+
+.time-duration {
+    font-size: small;
+    color: var(--clr-text-muted);
+    align-items: baseline;
+}
