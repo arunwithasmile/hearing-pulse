@@ -14,3 +14,9 @@
     color: var(--clr-text-muted);
     align-items: baseline;
 }
+
+.add-call {
+    position: absolute;
+    bottom: 1.5rem;
+    width: calc(100% - 2rem);
+}
