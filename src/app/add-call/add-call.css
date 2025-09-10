@@ -31,9 +31,25 @@ form {
         border-radius: 0.5rem;
         font-size: 1rem;
 
+        &.yes {
+            background-color: #46734616;
+        }
+
+        &.no {
+            background-color: #83010112;
+        }
+
         &:has(input:checked) {
             border-color: var(--clr-primary);
-            background-color: var(--clr-primary-200);
+            color: white;
+
+            &.yes {
+                background-color: #0a660a99;
+            }
+
+            &.no {
+                background-color: #c90000cf;
+            }
         }
     }
 }

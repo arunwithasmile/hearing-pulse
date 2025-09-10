@@ -56,8 +56,8 @@
 
     <fieldset class="form-field radio-group">
       <legend>Was the call successful?</legend>
-      <label><input type="radio" [value]="true" formControlName="wasSuccessful"> Yes</label>
-      <label><input type="radio" [value]="false" formControlName="wasSuccessful"> No</label>
+      <label class="yes"><input type="radio" [value]="true" formControlName="wasSuccessful"> Yes</label>
+      <label class="no"><input type="radio" [value]="false" formControlName="wasSuccessful"> No</label>
     </fieldset>
 
     @if (callForm.get('wasSuccessful')?.value === false) {
