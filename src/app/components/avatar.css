@@ -7,3 +7,7 @@
     color: white;
     font-weight: bold;
 }
+
+.asp-avatar.lg {
+    width: 60px;
+}

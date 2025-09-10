@@ -4,20 +4,50 @@
   </header>
 
   <form [formGroup]="callForm" (ngSubmit)="onSubmit()">
-    <div class="form-field">
-      <label for="fullName">Full Name</label>
-      <input id="fullName" type="text" formControlName="fullName">
-    </div>
-
-    <div class="form-field">
-      <label for="number">Number</label>
-      <input id="number" type="tel" formControlName="number" placeholder="Enter phone number">
-    </div>
-
-    <div class="form-field">
-      <label for="place">Place</label>
-      <input id="place" type="text" formControlName="place">
-    </div>
+    @if(!selectedClient){
+      <div class="form-field">
+        <label for="fullName">Full Name</label>
+        <input id="fullName" type="text" formControlName="fullName" autocomplete="off">
+        @if (filteredClients().length > 0) {
+          <div class="autocomplete-list">
+            @for (client of filteredClients(); track client.id) {
+              <div class="autocomplete-item" (click)="selectClient(client)">
+                <asp-avatar name="{{ client.fullName }}"></asp-avatar>
+                {{ client.fullName }}
+              </div>
+            }
+          </div>
+        }
+      </div>
+  
+      <div class="form-field">
+        <label for="number">Number</label>
+        <input id="number" type="tel" formControlName="number" placeholder="Enter phone number">
+      </div>
+  
+      <div class="form-field">
+        <label for="place">Place</label>
+        <input id="place" type="text" formControlName="place">
+      </div>
+    } @else {
+      <div class="client-card" (click)="selectedClient = undefined">
+            <asp-avatar name="{{ selectedClient.fullName }}" size="lg"></asp-avatar>
+            <div style="flex-grow: 1">
+                <div class="flex-stretch">
+                    <div class="name">
+                        {{ selectedClient.fullName }}
+                    </div>
+                    <div class="place">
+                        {{ selectedClient.place }}
+                    </div>
+                </div>
+                <div class="asp-list-subtext">
+                    {{ selectedClient.phoneNumber }}
+                </div>
+            </div>
+            <asp-tag>Tap to Edit</asp-tag>
+        </div>
+    }
 
     <div class="form-field">
       <label for="summary">Call Summary</label>
@@ -30,10 +60,12 @@
       <label><input type="radio" [value]="false" formControlName="wasSuccessful"> No</label>
     </fieldset>
 
-    <div class="form-field" *ngIf="callForm.get('wasSuccessful')?.value === false">
-      <label for="followUpDateTime">Schedule Follow-up</label>
-      <input id="followUpDateTime" type="datetime-local" formControlName="followUpDateTime">
-    </div>
+    @if (callForm.get('wasSuccessful')?.value === false) {
+      <div class="form-field">
+        <label for="followUpDateTime">Schedule Follow-up</label>
+        <input id="followUpDateTime" type="datetime-local" formControlName="followUpDateTime">
+      </div>
+    }
 
     <div class="form-actions">
       <button type="submit" [disabled]="callForm.invalid">Save Call</button>

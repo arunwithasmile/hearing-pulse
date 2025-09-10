@@ -12,7 +12,15 @@ interface RawCall {
 interface RawClient {
     id: string;
     fullName: string;
+    phoneNumber: string;
     place: DocumentReference;
+}
+
+export interface Client {
+    id: string;
+    fullName: string;
+    phoneNumber: string;
+    place: string;
 }
 
 interface RawPlace {
@@ -74,5 +82,22 @@ export class CallService {
         const seconds = totalSeconds % 60;
 
         return !seconds ? `${minutes}m` : `${minutes}m ${seconds}s`;
+    }
+
+    getClients(): Observable<Client[]> {
+        const clients$ = collectionData(collection(this.firestore, 'clients'), { idField: 'id' }) as Observable<RawClient[]>;
+        const places$ = collectionData(collection(this.firestore, 'places'), { idField: 'id' }) as Observable<RawPlace[]>;
+
+        return combineLatest([clients$, places$]).pipe(
+            map(([clients, places]) => {
+                const placesMap = new Map(places.map(p => [p.id, p.name]));
+                return clients.map(client => {
+                    return {
+                        ...client,
+                        place: placesMap.get(client.place.id) ?? 'Unknown Place'
+                    } as Client;
+                });
+            })
+        );
     }
 }

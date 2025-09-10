@@ -52,8 +52,8 @@ textarea {
 
 body {
   --clr-primary: #557296;
-  --clr-primary-100: color-mix(in srgb, var(--clr-primary), transparent 98%);
-  --clr-primary-200: color-mix(in srgb, var(--clr-primary), transparent 78%);
+  --clr-primary-100: color-mix(in srgb, var(--clr-primary), transparent 95%);
+  --clr-primary-200: color-mix(in srgb, var(--clr-primary), transparent 80%);
   --clr-primary-600: color-mix(in srgb, var(--clr-primary), black 20%);
   --clr-primary-700: color-mix(in srgb, var(--clr-primary), black 40%);
   --clr-secondary: #edcd8c;
@@ -66,7 +66,6 @@ body {
 
   color: var(--clr-text-primary);
   background-color: var(--clr-primary-100);
-  background-color: #f8fafa;
 
   --container-width: 1020px;
   --container-padding: 0.5rem;

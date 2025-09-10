@@ -5,9 +5,8 @@ header {
 
 form {
     background-color: white;
-    padding-inline: 1.5rem;
+    padding: 1.5rem;
     border-radius: 2rem 2rem 0 0;
-    padding-top: 1rem;
 }
 
 .form-field {
@@ -36,5 +35,53 @@ form {
             border-color: var(--clr-primary);
             background-color: var(--clr-primary-200);
         }
+    }
+}
+
+.autocomplete-list {
+    box-shadow: 0 1px 8px #0004;
+    border-radius: 0.75rem;
+    padding-block: 0.5rem;
+    max-height: 400px;
+    overflow: auto;
+}
+
+.autocomplete-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.25rem 0.75rem;
+    cursor: pointer;
+
+    &:hover {
+        background-color: var(--clr-primary-200);
+    }
+}
+
+.client-card {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background-color: var(--clr-card-bg);
+    padding: 1rem 1.25rem;
+    border-radius: 1rem;
+    margin-bottom: 1rem;
+    cursor: pointer;
+    position: relative;
+
+    .name {
+        font-size: 1.125rem;
+    }
+
+    .place {
+        font-size: 0.875rem;
+        color: var(--clr-text-muted);
+    }
+
+    asp-tag {
+        position: absolute;
+        right: 1rem;
+        bottom: 0.5rem;
+        opacity: 0.3;
     }
 }
