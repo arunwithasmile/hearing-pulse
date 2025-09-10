@@ -1,0 +1,40 @@
+header {
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+form {
+    background-color: white;
+    padding-inline: 1.5rem;
+    border-radius: 2rem 2rem 0 0;
+    padding-top: 1rem;
+}
+
+.form-field {
+    margin-bottom: 1rem;
+}
+
+.radio-group {
+    border: none;
+    display: flex;
+    gap: 1rem;
+
+    legend {
+        font-size: 0.875rem;
+        color: var(--clr-text-muted);
+        padding-block: 0.25rem;
+    }
+
+    label {
+        flex-grow: 1;
+        border: var(--input-border);
+        padding: 0.5rem 1rem;
+        border-radius: 0.5rem;
+        font-size: 1rem;
+
+        &:has(input:checked) {
+            border-color: var(--clr-primary);
+            background-color: var(--clr-primary-200);
+        }
+    }
+}

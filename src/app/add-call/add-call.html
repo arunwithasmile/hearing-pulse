@@ -1,0 +1,42 @@
+<div class="form-container">
+  <header class="form-header">
+    Add Call Record
+  </header>
+
+  <form [formGroup]="callForm" (ngSubmit)="onSubmit()">
+    <div class="form-field">
+      <label for="fullName">Full Name</label>
+      <input id="fullName" type="text" formControlName="fullName">
+    </div>
+
+    <div class="form-field">
+      <label for="number">Number</label>
+      <input id="number" type="tel" formControlName="number" placeholder="Enter phone number">
+    </div>
+
+    <div class="form-field">
+      <label for="place">Place</label>
+      <input id="place" type="text" formControlName="place">
+    </div>
+
+    <div class="form-field">
+      <label for="summary">Call Summary</label>
+      <textarea id="summary" formControlName="summary" rows="4"></textarea>
+    </div>
+
+    <fieldset class="form-field radio-group">
+      <legend>Was the call successful?</legend>
+      <label><input type="radio" [value]="true" formControlName="wasSuccessful"> Yes</label>
+      <label><input type="radio" [value]="false" formControlName="wasSuccessful"> No</label>
+    </fieldset>
+
+    <div class="form-field" *ngIf="callForm.get('wasSuccessful')?.value === false">
+      <label for="followUpDateTime">Schedule Follow-up</label>
+      <input id="followUpDateTime" type="datetime-local" formControlName="followUpDateTime">
+    </div>
+
+    <div class="form-actions">
+      <button type="submit" [disabled]="callForm.invalid">Save Call</button>
+    </div>
+  </form>
+</div>

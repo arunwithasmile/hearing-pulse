@@ -7,6 +7,10 @@
   padding: 0;
 }
 
+html {
+  font-size: 18px;
+}
+
 body {
   line-height: 1.5;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
@@ -29,14 +33,16 @@ img {
 
 /* Reset form elements */
 button,
-input,
+input:not([type="radio"]),
 select,
 textarea {
   font: inherit;
-  border: none;
-  background: none;
   color: inherit;
   width: 100%;
+}
+
+button {
+  border: none;
 }
 
 textarea {
@@ -44,13 +50,10 @@ textarea {
   width: 100%;
 }
 
-* {
-  transition: all 250ms;
-}
-
 body {
   --clr-primary: #557296;
   --clr-primary-100: color-mix(in srgb, var(--clr-primary), transparent 98%);
+  --clr-primary-200: color-mix(in srgb, var(--clr-primary), transparent 78%);
   --clr-primary-600: color-mix(in srgb, var(--clr-primary), black 20%);
   --clr-primary-700: color-mix(in srgb, var(--clr-primary), black 40%);
   --clr-secondary: #edcd8c;
@@ -66,18 +69,34 @@ body {
   background-color: #f8fafa;
 
   --container-width: 1020px;
+  --container-padding: 0.5rem;
+  --input-border: 1px solid #ddd;
+}
+
+* {
+  accent-color: var(--clr-primary);
+  transition: all 250ms;
 }
 
 .container {
   max-width: var(--container-width);
-  padding-inline: 1rem;
+  padding-inline: var(--container-padding);
   margin: 0 auto;
+}
+
+input,
+select,
+textarea {
+  border: var(--input-border);
+  border-radius: 0.5rem;
+  padding: 0.75rem 1rem;
+  background-color: color-mix(in srgb, var(--clr-primary-100), #000 1%);
 }
 
 button {
   font-size: large;
   color: white;
-  padding: 0.5rem 1.5rem;
+  padding: 0.75rem 1.5rem;
   border-radius: 50px;
   box-shadow: 0 1px 3px rgb(0 0 0 / 35%), 0 1px 8px rgb(0 0 0 / 15%);
   cursor: pointer;
@@ -93,14 +112,14 @@ button {
 }
 
 .asp-list-item {
-  padding: 0.5rem 1rem;
+  padding: 0.75rem 1rem;
   display: flex;
   align-items: center;
   gap: 0.75rem;
 }
 
 .asp-list-subtext {
-  font-size: small;
+  font-size: 0.875rem;
   color: var(--clr-text-muted);
 }
 
@@ -108,4 +127,11 @@ button {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
+}
+
+.form-field label {
+  display: block;
+  font-size: 0.875rem;
+  color: var(--clr-text-muted);
+  padding-block: 0.25rem;
 }
