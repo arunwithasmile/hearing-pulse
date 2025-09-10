@@ -1,5 +1,5 @@
 .call-list {
-    background-color: white;
+    background-color: var(--clr-card-bg);
     margin-block: 1rem;
     border-radius: 1rem;
     padding-block: 0.5rem;
