@@ -6,11 +6,11 @@
 }
 
 .name {
-    font-size: large;
+    font-size: 1.125rem;
 }
 
 .time-duration {
-    font-size: small;
+    font-size: 0.875rem;
     color: var(--clr-text-muted);
     align-items: baseline;
 }
