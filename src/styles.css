@@ -65,10 +65,13 @@ body {
   background-color: var(--clr-primary-100);
   background-color: #f8fafa;
 
+  --container-width: 1020px;
 }
 
 .container {
+  max-width: var(--container-width);
   padding-inline: 1rem;
+  margin: 0 auto;
 }
 
 button {
