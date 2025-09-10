@@ -1,5 +1,5 @@
 <div class="call-list">
-    @for (call of calls; track call.fullName) {
+    @for (call of calls(); track call.fullName) {
         <div class="asp-list-item call">
             <asp-avatar name="{{ call.fullName }}"></asp-avatar>
             <div style="flex-grow: 1">
