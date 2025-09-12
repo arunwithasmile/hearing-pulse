@@ -14,7 +14,7 @@ export class Avatar {
     protected readonly bgColos = ['#76a2a2', '#b76a43ff', '#698fbc', '#a47665', '#73865d', '#8472a3'];
 
     get initials(): string {
-        const tokens = this.name.split(' ');
+        const tokens = this.name.trim().split(' ');
         if (tokens.length == 1) {
             return tokens[0][0].toUpperCase();
         }
