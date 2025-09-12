@@ -1,5 +1,5 @@
 .total-card {
-    padding: 0.5rem 1rem;
+    padding-inline: 1rem;
 
     small {
         padding-inline: 0.5rem;
@@ -9,11 +9,13 @@
 
 .total {
     display: inline-block;
-    font-size: 1.8rem;
-    font-weight: 500;
+    font-size: 1.65rem;
+    font-weight: 600;
+    line-height: 1;
 }
 
 .kpis {
+    margin-block: 1rem;
     display: flex;
     gap: 1rem;
 }
