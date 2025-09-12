@@ -9,8 +9,8 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
     imports: [ReactiveFormsModule],
     template: `
     <div class="login-container">
-      <h1>Welcome to Pulse</h1>
-      <p>Please sign in to continue</p>
+      <h1>Pulse</h1>
+      <div class="logo">&#9901;</div>
       <form [formGroup]="loginForm" (ngSubmit)="login()">
         <div class="form-field">
           <input formControlName="email" type="email" placeholder="Email" autocomplete="email">
@@ -26,12 +26,15 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
     </div>
   `,
     styles: `
-    .login-container { text-align: center; padding-top: 4rem; }
+    .login-container { text-align: center; padding-top: 30vh; }
     h1 { margin-bottom: 0.5rem; }
     p { margin-bottom: 2rem; color: var(--clr-text-muted); }
     .form-field { margin-bottom: 1rem; }
-    input { width: 100%; }
-    .error-message { color: var(--clr-accent-no); margin-top: -1rem; margin-bottom: 1rem; }
+    input { background-color: white }
+    .error-message { color: var(--clr-error); margin-top: -1rem; margin-bottom: 1rem; }
+    .logo {font-size: 6rem;
+    line-height: 0.5;
+    margin-bottom: 2rem;}
   `
 })
 export class LoginComponent {

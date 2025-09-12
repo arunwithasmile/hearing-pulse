@@ -1,8 +1,10 @@
-<header>
-  <div class="container">
-    Pulse
-  </div>
-</header>
+@if(showHeader()){
+  <header>
+    <div class="container">
+      Pulse
+    </div>
+  </header>
+}
 <main class="container">
   <router-outlet />
 </main>

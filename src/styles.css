@@ -51,7 +51,7 @@ textarea {
 }
 
 body {
-  --clr-primary: #557296;
+  --clr-primary: #024d89;
   --clr-primary-10: color-mix(in srgb, var(--clr-primary), transparent 96%);
   --clr-primary-100: color-mix(in srgb, var(--clr-primary), transparent 90%);
   --clr-primary-200: color-mix(in srgb, var(--clr-primary), transparent 80%);
@@ -67,15 +67,21 @@ body {
   --clr-error: #d32f2f;
   --clr-warning: #ed6c02;
 
-
   --clr-card-bg: color-mix(in srgb, var(--clr-primary-100), #999 4%);
 
   color: var(--clr-text-primary);
-  background-color: var(--clr-primary-100);
+
+  --login-bg: radial-gradient(ellipse at 80% 130%, var(--clr-secondary) 10%, transparent 40%),
+    radial-gradient(ellipse at 20% -30%, var(--clr-primary-200) 30%, transparent 40%);
+  --app-bg: radial-gradient(ellipse at 40% 18%, var(--clr-primary-100) 18%, transparent);
+  /* --bg This will be dynamically set from the default is --app-bg */
+  --bg: var(--app-bg);
+  background-image: var(--bg);
 
   --container-width: 1020px;
   --container-padding: 0.5rem;
   --input-border: 1px solid #ddd;
+  min-height: 100dvh;
 }
 
 * {
