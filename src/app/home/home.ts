@@ -8,7 +8,7 @@ import { Call } from '../services/types';
 
 @Component({
   selector: 'app-home',
-  imports: [Avatar, DatePipe, RouterModule],
+  imports: [Avatar, RouterModule],
   templateUrl: './home.html',
   styleUrl: './home.css'
 })

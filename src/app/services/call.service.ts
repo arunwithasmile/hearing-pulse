@@ -2,11 +2,15 @@ import { Injectable, inject } from '@angular/core';
 import { DocumentReference, Firestore, collection, collectionData, docData } from '@angular/fire/firestore';
 import { Observable, combineLatest, map } from 'rxjs';
 import { Call, Client } from './types';
+import { Timestamp } from 'firebase/firestore/lite';
 
 // Represents the raw data from the 'calls' collection
 interface RawCall {
     client: DocumentReference;
-    timestamp: string;
+    timestamp: Timestamp;
+    summary: string;
+    wasSuccessful: boolean;
+    followUpTimestamp: Timestamp;
     durationMills: string;
 }
 
@@ -46,14 +50,44 @@ export class CallService {
                     const place = client ? placesMap.get(client.place.id) : undefined;
 
                     return <Call>{
-                        fullName: client?.fullName ?? 'Unknown Client',
-                        place: place?.name ?? 'Unknown Place',
-                        dateTime: call.timestamp,
-                        duration: this.convertToText(call.durationMills)
+                        fullName: client?.fullName,
+                        place: place?.name ?? '',
+                        summary: call.summary,
+                        wasSuccessful: call.wasSuccessful,
+                        dateTime: this.convertToDateTime(call.timestamp),
+                        duration: this.convertToText(call.durationMills),
+                        followUpDateTime: this.convertToDateTime(call.followUpTimestamp)
                     };
                 });
             })
         );
+    }
+
+    // TODO Make it a pipe
+    private convertToDateTime(timestamp: Timestamp): string {
+        if (!timestamp) {
+            return '';
+        }
+        const callDate = timestamp.toDate();
+        const now = new Date();
+
+        const isCurrentYear = callDate.getFullYear() === now.getFullYear();
+
+        // Check if the call was made today
+        const isToday = isCurrentYear &&
+            callDate.getMonth() === now.getMonth() &&
+            callDate.getDate() === now.getDate();
+
+        if (isToday) {
+            // Format as hh:mm am/pm
+            return callDate.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true });
+        } else if (isCurrentYear) {
+            // Format as dd MMM for dates in the current year but not today
+            return callDate.toLocaleDateString('en-GB', { day: '2-digit', month: 'short' });
+        } else {
+            // Format as dd MMM yyyy for dates in previous years
+            return callDate.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
+        }
     }
 
     private convertToText(durationMillis: string): string {
