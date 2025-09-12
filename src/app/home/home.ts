@@ -1,5 +1,5 @@
 import { Component, Signal, inject } from '@angular/core';
-import { Avatar } from '../components/avatar';
+import { Avatar } from '../components/avatar/avatar';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { CallService } from '../services/call.service';
 import { RouterModule } from '@angular/router';

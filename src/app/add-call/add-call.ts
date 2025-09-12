@@ -7,7 +7,7 @@ import { CallService } from '../services/call.service';
 import { ClientService } from '../services/client.service';
 import { Client, Place } from '../services/types';
 import { debounceTime, distinctUntilChanged, startWith } from 'rxjs';
-import { Avatar } from "../components/avatar";
+import { Avatar } from "../components/avatar/avatar";
 import { DocumentReference, Firestore, doc } from '@angular/fire/firestore';
 import { Tag } from "../components/tag/tag";
 
