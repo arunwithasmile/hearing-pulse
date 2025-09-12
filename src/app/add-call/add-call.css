@@ -32,11 +32,11 @@ form {
         font-size: 1rem;
 
         &.yes {
-            background-color: #46734616;
+            background-color: color-mix(in srgb, var(--clr-success), #0000 90%);
         }
 
         &.no {
-            background-color: #83010112;
+            background-color: color-mix(in srgb, var(--clr-error), #0000 90%);
         }
 
         &:has(input:checked) {
@@ -44,11 +44,11 @@ form {
             color: white;
 
             &.yes {
-                background-color: #0a660a99;
+                background-color: var(--clr-success);
             }
 
             &.no {
-                background-color: #c90000cf;
+                background-color: var(--clr-error);
             }
         }
     }

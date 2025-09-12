@@ -62,6 +62,11 @@ body {
   --clr-text-muted: #6b7280;
   --clr-text-subtle: #9ca3af;
 
+  --clr-success: #2e7d32;
+  --clr-error: #d32f2f;
+  --clr-warning: #ed6c02;
+
+
   --clr-card-bg: color-mix(in srgb, var(--clr-primary-100), #999 4%);
 
   color: var(--clr-text-primary);
@@ -107,6 +112,10 @@ button {
   &,
   &:active {
     background-color: var(--clr-primary);
+  }
+
+  &:disabled {
+    opacity: 0.5;
   }
 }
 
