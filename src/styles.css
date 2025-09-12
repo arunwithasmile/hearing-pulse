@@ -71,17 +71,11 @@ body {
 
   color: var(--clr-text-primary);
 
-  --login-bg: radial-gradient(ellipse at 80% 130%, var(--clr-secondary) 10%, transparent 40%),
-    radial-gradient(ellipse at 20% -30%, var(--clr-primary-200) 30%, transparent 40%);
-  --app-bg: radial-gradient(ellipse at 40% 18%, var(--clr-primary-100) 18%, transparent);
-  /* --bg This will be dynamically set from the default is --app-bg */
-  --bg: var(--app-bg);
-  background-image: var(--bg);
+  background-image: radial-gradient(ellipse at 40% 18%, var(--clr-primary-100) 18%, transparent);
 
   --container-width: 1020px;
   --container-padding: 0.5rem;
   --input-border: 1px solid #ddd;
-  min-height: 100dvh;
 }
 
 * {

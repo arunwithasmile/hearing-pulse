@@ -1,0 +1,62 @@
+.login-container {
+    height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    padding-inline: 2rem;
+}
+
+.login-container::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(ellipse at 80% 130%, var(--clr-secondary) 10%, transparent 40%),
+        radial-gradient(ellipse at 20% -30%, var(--clr-primary-200) 30%, transparent 40%);
+    z-index: -1;
+}
+
+h1 {
+    margin-bottom: 2rem;
+    font-size: 2.5rem;
+}
+
+.form-field {
+    margin-bottom: 1rem;
+}
+
+input {
+    background-color: white;
+    border-radius: 2rem;
+}
+
+.password-field {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 4px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--clr-text-muted);
+    font-size: 0.8rem;
+    width: 100px;
+    box-shadow: 0 0 2px #0004;
+}
+
+.error-message {
+    display: block;
+    color: var(--clr-error);
+    margin-block: 1rem 2rem;
+}
+
+.logo {
+    font-size: 8rem;
+    line-height: 0.5;
+    margin-bottom: 1rem;
+    color: var(--clr-primary);
+}

@@ -19,9 +19,7 @@ export class App implements OnInit {
     this.router.events.pipe(
       filter((event): event is NavigationEnd => event instanceof NavigationEnd)
     ).subscribe((event: NavigationEnd) => {
-      const isLogin = event.urlAfterRedirects === '/login';
-      this.showHeader.set(!isLogin);
-      document.body.style.setProperty('--bg', isLogin ? 'var(--login-bg)' : 'var(--app-bg)');
+      this.showHeader.set(event.urlAfterRedirects !== '/login');
     });
 
     // Read the CSS variable value from the root element's computed styles
