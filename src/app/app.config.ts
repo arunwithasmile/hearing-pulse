@@ -6,7 +6,7 @@ import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { routes } from './app.routes';
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAqpIjGv7fHv0Tt_KBpTeaifJj1hhOFiE4",
+  apiKey: "SAVED_PRIVATELY",
   authDomain: "pulse-asp.firebaseapp.com",
   projectId: "pulse-asp",
   storageBucket: "pulse-asp.firebasestorage.app",
