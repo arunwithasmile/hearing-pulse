@@ -1,0 +1,31 @@
+<div class="total-card">
+    <div class="total">{{ 26000 | currency :'INR':'symbol':'1.0-0' }}</div>
+    <small>Month Total</small>
+</div>
+<div class="flex kpis">
+    <div class="card kpi">
+        <small>Income</small>
+        <div>{{ 19700 | currency :'INR':'symbol':'1.0-0' }}</div>
+    </div>
+    <div class="card kpi">
+        <small>Expenses</small>
+        <div>{{ 6300 | currency :'INR':'symbol':'1.0-0' }}</div>
+    </div>
+</div>
+<div class="asp-list">
+    @for (trans of transactions; track trans.id) {
+        <div class="asp-list-item">
+            <div></div>
+            <div style="flex-grow:1">
+                <div class="asp-list-value flex-space-between">
+                    <div>
+                        {{trans.description}}
+                    </div>
+                    <div>{{ trans.amount | currency :'INR':'symbol':'1.0-0' }}</div>
+                </div>
+                <div class="asp-list-subtext">12 Aug</div>
+            </div>
+        </div>
+    }
+
+</div>

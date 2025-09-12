@@ -120,6 +120,13 @@ button {
   }
 }
 
+.asp-list {
+  background-color: white;
+  margin-block: 1rem;
+  border-radius: 1rem;
+  padding-block: 0.5rem;
+}
+
 .asp-list-item {
   padding: 0.75rem 1rem;
   display: flex;
@@ -129,6 +136,10 @@ button {
   &:not(:last-child) {
     border-bottom: 1px solid #eee;
   }
+}
+
+.asp-list-value {
+  font-size: 1.125rem;
 }
 
 .asp-list-subtext {
@@ -155,6 +166,6 @@ button {
 
 .card {
   background-color: var(--clr-card-bg);
-  padding: 1rem;
+  padding: 0.75rem 1.5rem;
   border-radius: 1rem;
 }

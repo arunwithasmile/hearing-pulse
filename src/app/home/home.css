@@ -1,12 +1,5 @@
-.call-list {
-    background-color: white;
+.asp-list {
     margin-block: 1rem 6rem;
-    border-radius: 1rem;
-    padding-block: 0.5rem;
-}
-
-.name {
-    font-size: 1.125rem;
 }
 
 .name-place {
@@ -25,4 +18,11 @@
     position: fixed;
     bottom: 1.5rem;
     width: calc(min(100%, var(--container-width)) - 2 * var(--container-padding));
+}
+
+.khata {
+    position: fixed;
+    bottom: 5.5rem;
+    width: fit-content;
+    right: 1rem;
 }

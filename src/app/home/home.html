@@ -1,14 +1,14 @@
 <div class="card">
     {{clients()?.length}} clients
 </div>
-<div class="call-list">
+<div class="asp-list">
     @for (client of clients(); track client.fullName) {
         <a href="tel:{{client.phoneNumber}}" class="asp-list-item call">
             <asp-avatar name="{{ client.fullName }}"></asp-avatar>
             <div style="flex-grow: 1">
                 <div class="flex-space-between">
                     <div class="name-place">
-                        <div class="name">
+                        <div class="asp-list-value">
                             {{ client.fullName }}
                         </div>
                         <div class="asp-list-subtext">
@@ -26,4 +26,5 @@
         </a>
     }
 </div>
+<button class="khata" routerLink="/khata">₹</button>
 <button class="add-call" routerLink="/add-call">Add Call Record</button>

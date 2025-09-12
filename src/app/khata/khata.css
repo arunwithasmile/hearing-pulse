@@ -1,0 +1,28 @@
+.total-card {
+    padding: 0.5rem 1rem;
+
+    small {
+        padding-inline: 0.5rem;
+        color: var(--clr-text-muted);
+    }
+}
+
+.total {
+    display: inline-block;
+    font-size: 1.8rem;
+    font-weight: 500;
+}
+
+.kpis {
+    display: flex;
+    gap: 1rem;
+}
+
+.kpi {
+    flex-grow: 1;
+
+    >div {
+        font-size: 1.5rem;
+        font-weight: 500;
+    }
+}
