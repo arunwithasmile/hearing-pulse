@@ -27,7 +27,14 @@
   
       <div class="form-field">
         <label for="place">Place</label>
-        <input id="place" type="text" formControlName="place">
+        <input id="place" type="text" formControlName="place" autocomplete="off">
+        @if (filteredPlaces().length > 0) {
+          <div class="autocomplete-list">
+            @for (place of filteredPlaces(); track place.id) {
+              <div class="autocomplete-item" (click)="selectPlace(place)">{{ place.name }}</div>
+            }
+          </div>
+        }
       </div>
     } @else {
       <div class="client-card" (click)="unselectClient()">
@@ -48,6 +55,16 @@
             <asp-tag>Tap to Edit</asp-tag>
         </div>
     }
+
+    <div class="form-field">
+      <label for="callDateTime">Call Date & Time</label>
+      <input id="callDateTime" type="datetime-local" formControlName="callDateTime">
+    </div>
+
+    <div class="form-field">
+      <label for="callDuration">Call Duration (Minutes)</label>
+      <input id="callDuration" type="number" formControlName="callDuration">
+    </div>
 
     <div class="form-field">
       <label for="summary">Call Summary</label>
