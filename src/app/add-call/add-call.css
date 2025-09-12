@@ -40,14 +40,15 @@ form {
         }
 
         &:has(input:checked) {
-            border-color: var(--clr-primary);
             color: white;
 
             &.yes {
+                border-color: var(--clr-success);
                 background-color: var(--clr-success);
             }
 
             &.no {
+                border-color: var(--clr-error);
                 background-color: var(--clr-error);
             }
         }

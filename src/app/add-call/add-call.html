@@ -38,22 +38,22 @@
       </div>
     } @else {
       <div class="client-card" (click)="unselectClient()">
-            <asp-avatar name="{{ selectedClient.fullName }}" size="lg"></asp-avatar>
-            <div style="flex-grow: 1">
-                <div class="flex-stretch">
-                    <div class="name">
-                        {{ selectedClient.fullName }}
-                    </div>
-                    <div class="place">
-                        {{ selectedClient.place }}
-                    </div>
-                </div>
-                <div class="asp-list-subtext">
-                    {{ selectedClient.phoneNumber }}
-                </div>
+        <asp-avatar name="{{ selectedClient.fullName }}" size="lg"></asp-avatar>
+        <div style="flex-grow: 1">
+          <div class="flex-stretch">
+            <div class="name">
+              {{ selectedClient.fullName }}
             </div>
-            <asp-tag>Tap to Edit</asp-tag>
+            <div class="place">
+              {{ selectedClient.place }}
+            </div>
+          </div>
+          <div class="asp-list-subtext">
+            {{ selectedClient.phoneNumber }}
+          </div>
         </div>
+        <asp-tag>Tap to Edit</asp-tag>
+      </div>
     }
 
     <div class="form-field">

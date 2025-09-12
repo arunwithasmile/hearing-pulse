@@ -52,7 +52,8 @@ textarea {
 
 body {
   --clr-primary: #557296;
-  --clr-primary-100: color-mix(in srgb, var(--clr-primary), transparent 95%);
+  --clr-primary-10: color-mix(in srgb, var(--clr-primary), transparent 96%);
+  --clr-primary-100: color-mix(in srgb, var(--clr-primary), transparent 90%);
   --clr-primary-200: color-mix(in srgb, var(--clr-primary), transparent 80%);
   --clr-primary-600: color-mix(in srgb, var(--clr-primary), black 20%);
   --clr-primary-700: color-mix(in srgb, var(--clr-primary), black 40%);
@@ -94,7 +95,7 @@ textarea {
   border: var(--input-border);
   border-radius: 0.5rem;
   padding: 0.75rem 1rem;
-  background-color: color-mix(in srgb, var(--clr-primary-100), #000 1%);
+  background-color: color-mix(in srgb, var(--clr-primary-10), #000 2%);
 }
 
 button {
@@ -124,6 +125,10 @@ button {
   display: flex;
   align-items: center;
   gap: 0.75rem;
+
+  &:not(:last-child) {
+    border-bottom: 1px solid #eee;
+  }
 }
 
 .asp-list-subtext {
