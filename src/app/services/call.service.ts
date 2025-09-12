@@ -1,6 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { DocumentReference, Firestore, collection, collectionData, docData } from '@angular/fire/firestore';
 import { Observable, combineLatest, map } from 'rxjs';
+import { Call, Client } from './types';
 
 // Represents the raw data from the 'calls' collection
 interface RawCall {
@@ -16,25 +17,9 @@ interface RawClient {
     place: DocumentReference;
 }
 
-export interface Client {
-    id: string;
-    fullName: string;
-    phoneNumber: string;
-    place: string;
-}
-
 interface RawPlace {
     id: string;
     name: string;
-}
-
-
-// Represents the resolved, combined data we want to display
-export interface Call {
-    fullName: string;
-    place: string;
-    dateTime: string;
-    duration: string;
 }
 
 @Injectable({

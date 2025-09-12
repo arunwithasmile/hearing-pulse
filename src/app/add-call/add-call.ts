@@ -3,7 +3,8 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { CallService, Client } from '../home/call.service';
+import { CallService } from '../services/call.service';
+import { Client } from '../services/types';
 import { debounceTime, distinctUntilChanged, startWith } from 'rxjs';
 import { Avatar } from "../components/avatar";
 import { DocumentReference } from 'firebase/firestore/lite';
