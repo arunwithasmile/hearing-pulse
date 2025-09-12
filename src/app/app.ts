@@ -23,7 +23,7 @@ export class App implements OnInit {
     });
 
     // Read the CSS variable value from the root element's computed styles
-    const themeColor = getComputedStyle(document.documentElement).getPropertyValue('--clr-primary-200').trim();
+    const themeColor = getComputedStyle(document.body).getPropertyValue('--clr-primary').trim();
 
     this.meta.updateTag({
       name: 'theme-color',
