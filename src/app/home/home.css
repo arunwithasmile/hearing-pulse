@@ -1,12 +1,18 @@
 .call-list {
     background-color: white;
-    margin-bottom: 6rem;
+    margin-block: 1rem 6rem;
     border-radius: 1rem;
     padding-block: 0.5rem;
 }
 
 .name {
     font-size: 1.125rem;
+}
+
+.name-place {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
 }
 
 .time-duration {

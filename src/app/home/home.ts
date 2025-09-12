@@ -1,10 +1,8 @@
 import { Component, Signal, inject } from '@angular/core';
 import { Avatar } from '../components/avatar';
-import { DatePipe } from '@angular/common';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { CallService } from '../services/call.service';
 import { RouterModule } from '@angular/router';
-import { Call } from '../services/types';
 
 @Component({
   selector: 'app-home',
@@ -14,9 +12,9 @@ import { Call } from '../services/types';
 })
 export class Home {
   private callService = inject(CallService);
-  protected readonly calls: Signal<Call[] | undefined>;
+  protected readonly clients: Signal<any[] | undefined>;
 
   constructor() {
-    this.calls = toSignal(this.callService.getCalls());
+    this.clients = toSignal(this.callService.getCalls());
   }
 }

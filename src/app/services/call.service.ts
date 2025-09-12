@@ -1,5 +1,5 @@
 import { Injectable, inject } from '@angular/core';
-import { DocumentReference, Firestore, Timestamp, addDoc, collection, collectionData, doc, docData } from '@angular/fire/firestore';
+import { DocumentReference, Firestore, Timestamp, addDoc, collection, collectionData, doc, docData, orderBy, query } from '@angular/fire/firestore';
 import { Observable, combineLatest, map } from 'rxjs';
 import { Call, Place, RawClient } from './types';
 
@@ -39,33 +39,40 @@ export class CallService {
 
     private firestore: Firestore = inject(Firestore);
 
-    getCalls(): Observable<Call[]> {
+    getCalls(): Observable<any[]> {
         const places$ = collectionData(collection(this.firestore, 'places'), { idField: 'id' }) as Observable<Place[]>;
         const clients$ = collectionData(collection(this.firestore, 'clients'), { idField: 'id' }) as Observable<RawClient[]>;
-        const calls$ = collectionData(collection(this.firestore, 'calls')) as Observable<RawCall[]>;
+        const callsQuery = query(collection(this.firestore, 'calls'), orderBy('timestamp', 'desc'));
+        const calls$ = collectionData(callsQuery, { idField: 'id' }) as Observable<RawCall[]>;
 
-        // 2. Combine the latest emissions from all three streams
         return combineLatest([calls$, clients$, places$]).pipe(
             map(([calls, clients, places]) => {
-                // 3. Create lookup maps for efficient access (O(1) lookup)
-                const clientsMap = new Map(clients.map(client => [client.id, client]));
+                // Create lookup maps for efficient access
                 const placesMap = new Map(places.map(place => [place.id, place]));
 
-                // 4. Join the data
-                return calls.map(call => {
-                    const client = clientsMap.get(call.client.id);
-                    const place = client ? placesMap.get(client.place.id) : undefined;
+                // Initialize clients with an empty calls array
+                const clientsWithCalls = new Map(clients.map(client => {
+                    return [client.id, {
+                        ...client,
+                        place: placesMap.get(client.place.id)?.name ?? 'Unknown Place',
+                        calls: []
+                    }];
+                }));
 
-                    return <Call>{
-                        fullName: client?.fullName,
-                        place: place?.name ?? '',
-                        summary: call.summary,
-                        wasSuccessful: call.wasSuccessful,
-                        dateTime: this.convertToDateTime(call.timestamp), // convertToDateTime handles null
-                        duration: this.convertToText(call.durationMills),
-                        followUpDateTime: this.convertToDateTime(call.followUpTimestamp!)
+                // Group calls by client
+                for (const call of calls) {
+                    const client = clientsWithCalls.get(call.client.id);
+                    if (client) {
+                        (client.calls as any[]).push({
+                            ...call,
+                            dateTime: this.convertToDateTime(call.timestamp),
+                            duration: this.convertToText(call.durationMills),
+                            followUpDateTime: this.convertToDateTime(call.followUpTimestamp)
+                        });
                     };
-                });
+                }
+
+                return Array.from(clientsWithCalls.values());
             })
         );
     }

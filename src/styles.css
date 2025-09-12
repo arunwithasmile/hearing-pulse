@@ -136,7 +136,11 @@ button {
   color: var(--clr-text-muted);
 }
 
-.flex-stretch {
+.flex {
+  display: flex;
+}
+
+.flex-space-between {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
@@ -147,4 +151,10 @@ button {
   font-size: 0.875rem;
   color: var(--clr-text-muted);
   padding-block: 0.25rem;
+}
+
+.card {
+  background-color: var(--clr-card-bg);
+  padding: 1rem;
+  border-radius: 1rem;
 }

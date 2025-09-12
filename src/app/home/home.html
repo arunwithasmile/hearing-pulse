@@ -1,21 +1,29 @@
+<div class="card">
+    {{clients()?.length}} clients
+</div>
 <div class="call-list">
-    @for (call of calls(); track call.fullName) {
-        <div class="asp-list-item call">
-            <asp-avatar name="{{ call.fullName }}"></asp-avatar>
+    @for (client of clients(); track client.fullName) {
+        <a href="tel:{{client.phoneNumber}}" class="asp-list-item call">
+            <asp-avatar name="{{ client.fullName }}"></asp-avatar>
             <div style="flex-grow: 1">
-                <div class="flex-stretch">
-                    <div class="name">
-                        {{ call.fullName }}
+                <div class="flex-space-between">
+                    <div class="name-place">
+                        <div class="name">
+                            {{ client.fullName }}
+                        </div>
+                        <div class="asp-list-subtext">
+                            {{ client.place }}
+                        </div>
                     </div>
                     <div class="time-duration">
-                        {{ call.dateTime }} ({{ call.duration }})
+                        {{ client.calls.length + ` Call` + (client.calls.length === 1 ? `` : `s`) }}
                     </div>
                 </div>
                 <div class="asp-list-subtext">
-                    {{ call.place }}
+                    {{ client.calls[0]?.summary }}
                 </div>
             </div>
-        </div>
+        </a>
     }
 </div>
 <button class="add-call" routerLink="/add-call">Add Call Record</button>
