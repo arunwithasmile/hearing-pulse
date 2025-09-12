@@ -30,7 +30,7 @@
         <input id="place" type="text" formControlName="place">
       </div>
     } @else {
-      <div class="client-card" (click)="selectedClient = undefined">
+      <div class="client-card" (click)="unselectClient()">
             <asp-avatar name="{{ selectedClient.fullName }}" size="lg"></asp-avatar>
             <div style="flex-grow: 1">
                 <div class="flex-stretch">

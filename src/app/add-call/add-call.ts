@@ -36,9 +36,9 @@ export class AddCallComponent implements OnInit {
   constructor() {
     this.callForm = this.fb.group({
       clientRef: DocumentReference,
-      fullName: ['', Validators.required],
-      phoneNumber: ['+91 ', Validators.required],
-      place: ['', Validators.required],
+      fullName: [''], // Validators will be set dynamically
+      phoneNumber: ['+91 '],
+      place: [''],
       summary: ['', Validators.required],
       wasSuccessful: [true],
       followUpDateTime: ['']
@@ -46,13 +46,34 @@ export class AddCallComponent implements OnInit {
   }
 
   ngOnInit() {
+    // By default, when no client is selected, these fields are required.
+    this.setClientFieldsRequired(true);
+
     // Update the nameFilter signal when the user types in the fullName field
     this.callForm.get('fullName')?.valueChanges.pipe(
       startWith(''),
       debounceTime(300),
       distinctUntilChanged() // Only emit if the value has changed
     ).subscribe(value => {
-      this.nameFilter.set(value || '');
+      // Only show client suggestions if no client is selected
+      if (this.selectedClient) {
+        this.nameFilter.set('');
+      } else {
+        this.nameFilter.set(value || '');
+      }
+    });
+
+    // Add or remove 'required' validator for followUpDateTime based on wasSuccessful
+    this.callForm.get('wasSuccessful')?.valueChanges.subscribe(isSuccessful => {
+      const followUpControl = this.callForm.get('followUpDateTime');
+      if (isSuccessful === false) {
+        followUpControl?.setValidators(Validators.required);
+      } else {
+        followUpControl?.clearValidators();
+        followUpControl?.setValue(''); // Clear the value if it's not required
+      }
+      // Important: update the validity of the control after changing validators
+      followUpControl?.updateValueAndValidity();
     });
   }
 
@@ -68,5 +89,26 @@ export class AddCallComponent implements OnInit {
     });
     this.selectedClient = client;
     this.nameFilter.set(''); // Hide the autocomplete list
+
+    // Make client fields optional
+    this.setClientFieldsRequired(false);
+  }
+
+  unselectClient() {
+    this.selectedClient = undefined;
+
+    // Re-apply validators for creating a new client
+    this.setClientFieldsRequired(true);
+  }
+
+  private setClientFieldsRequired(isRequired: boolean) {
+    const fields = ['fullName', 'phoneNumber', 'place'];
+    const validator = isRequired ? Validators.required : null;
+
+    for (const fieldName of fields) {
+      const control = this.callForm.get(fieldName);
+      control?.setValidators(validator);
+      control?.updateValueAndValidity();
+    }
   }
 }
