@@ -37,22 +37,15 @@ export class AddCallComponent implements OnInit {
     this.callForm = this.fb.group({
       clientRef: DocumentReference,
       fullName: ['', Validators.required],
-      number: ['+91 ', Validators.required],
+      phoneNumber: ['+91 ', Validators.required],
       place: ['', Validators.required],
       summary: ['', Validators.required],
-      wasSuccessful: [true, Validators.required],
+      wasSuccessful: [true],
       followUpDateTime: ['']
     });
   }
 
   ngOnInit() {
-    // Conditional logic for the follow-up field
-    this.callForm.get('wasSuccessful')?.valueChanges.subscribe(isSuccessful => {
-      const followUpControl = this.callForm.get('followUpDateTime');
-      isSuccessful ? followUpControl?.disable() : followUpControl?.enable();
-      followUpControl?.setValue('');
-    });
-
     // Update the nameFilter signal when the user types in the fullName field
     this.callForm.get('fullName')?.valueChanges.pipe(
       startWith(''),
