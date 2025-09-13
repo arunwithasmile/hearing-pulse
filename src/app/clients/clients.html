@@ -1,0 +1,22 @@
+<div class="asp-list">
+    @for (client of clients(); track client.id) {
+        <div class="asp-list-item">
+            <asp-avatar name="{{ client.fullName }}"></asp-avatar>
+            <div style="flex-grow: 1">
+                <div class="flex-space-between">
+                    <div class="name-place">
+                        <div class="asp-list-value">
+                            {{ client.fullName }}
+                        </div>
+                        <div class="asp-list-subtext">
+                            {{ client.place }}
+                        </div>
+                    </div>
+                </div>
+                <div class="asp-list-subtext">
+                    {{ client.phoneNumber }}
+                </div>
+            </div>
+        </div>
+    }
+</div>
