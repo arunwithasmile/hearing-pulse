@@ -1,0 +1,10 @@
+<div class="autocomplete-container">
+  <input type="text" [placeholder]="placeholder" [value]="value()" (input)="onInput($event)" autocomplete="off">
+  @if (filteredPlaces().length > 0 && filteredPlaces()[0].name.toLowerCase() !== value().toLowerCase()) {
+    <div class="autocomplete-list">
+      @for (place of filteredPlaces(); track place.id) {
+        <div class="autocomplete-item" (click)="selectPlace(place)">{{ place.name }}</div>
+      }
+    </div>
+  }
+</div>

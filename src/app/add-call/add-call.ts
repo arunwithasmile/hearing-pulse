@@ -6,15 +6,16 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { CallService } from '../services/call.service';
 import { ClientService } from '../services/client.service';
 import { Client, Place } from '../services/types';
-import { debounceTime, distinctUntilChanged, startWith } from 'rxjs';
+import { debounceTime, distinctUntilChanged, firstValueFrom, startWith } from 'rxjs';
 import { Avatar } from "../components/avatar/avatar";
 import { DocumentReference, Firestore, doc } from '@angular/fire/firestore';
 import { Tag } from "../components/tag/tag";
+import { PlaceAutocompleteComponent } from '../client-edit/place-autocomplete.component';
 
 @Component({
   selector: 'app-add-call',
   standalone: true,
-  imports: [ReactiveFormsModule, RouterModule, CommonModule, Avatar, Tag],
+  imports: [ReactiveFormsModule, RouterModule, CommonModule, Avatar, Tag, PlaceAutocompleteComponent],
   templateUrl: './add-call.html',
   styleUrl: './add-call.css'
 })
@@ -40,14 +41,6 @@ export class AddCallComponent implements OnInit {
     if (!clients || !filter) return [];
     return clients.filter(client => client.fullName.toLowerCase().includes(filter));
   });
-  private places: Signal<any[] | undefined> = toSignal(this.clientService.getPlaces());
-  private placeFilter: WritableSignal<string> = signal('');
-  protected filteredPlaces: Signal<any[]> = computed(() => {
-    const places = this.places();
-    const filter = this.placeFilter().toLowerCase();
-    if (!places || !filter) return [];
-    return places.filter(place => place.name.toLowerCase().includes(filter));
-  });
 
   constructor() {
     this.callForm = this.fb.group({
@@ -55,7 +48,6 @@ export class AddCallComponent implements OnInit {
       fullName: [''],
       phoneNumber: ['+91 '],
       place: [''], // For display and for creating a new place
-      placeId: [null as string | null], // For storing the ID of a selected place
       callDateTime: [this.getCurrentLocalISOString(), Validators.required],
       callDuration: [''],
       summary: ['', Validators.required],
@@ -82,17 +74,6 @@ export class AddCallComponent implements OnInit {
       }
     });
 
-    this.callForm.get('place')?.valueChanges.pipe(
-      debounceTime(300),
-      distinctUntilChanged()
-    ).subscribe(value => {
-      if (value === this.selectedPlace?.name) {
-        return;
-      }
-      this.placeFilter.set(value || '');
-      this.selectedPlace = undefined;
-    });
-
     // Add or remove 'required' validator for followUpDateTime based on wasSuccessful
     this.callForm.get('wasSuccessful')?.valueChanges.subscribe(isSuccessful => {
       const followUpControl = this.callForm.get('followUpDateTime');
@@ -113,17 +94,11 @@ export class AddCallComponent implements OnInit {
       try {
         const formValue = this.callForm.value;
         let clientRef: DocumentReference;
-        let placeRef: DocumentReference;
 
         if (this.selectedClient) {
           clientRef = doc(this.firestore, `clients/${this.selectedClient.id}`);
         } else {
-          if (this.selectedPlace) {
-            placeRef = doc(this.firestore, `places/${this.selectedPlace.id}`);
-          } else {
-            placeRef = await this.clientService.addPlace({ name: formValue.place });
-          }
-
+          const placeRef = await this.clientService.getOrCreatePlace(formValue.place);
           // Create a new client
           const newClient = {
             fullName: formValue.fullName,
@@ -161,13 +136,6 @@ export class AddCallComponent implements OnInit {
 
     // Re-apply validators for creating a new client
     this.setClientFieldsRequired(true);
-  }
-
-  selectPlace(place: any) {
-    this.callForm.get('placeId')?.setValue(place.id);
-    this.callForm.get('place')?.setValue(place.name);
-    this.selectedPlace = place;
-    this.placeFilter.set(''); // Hide autocomplete
   }
 
   private setClientFieldsRequired(isRequired: boolean) {

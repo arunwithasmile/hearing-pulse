@@ -1,9 +1,11 @@
 <div class="asp-list">
     @for (client of clients(); track client.id) {
-        <div class="asp-list-item">
-            <asp-avatar name="{{ client.fullName }}"></asp-avatar>
-            <div style="flex-grow: 1">
-                <div class="flex-space-between">
+        <a [routerLink]="['/client', client.id]" class="asp-list-item">
+            <div>
+                <asp-avatar name="{{ client.fullName }}"></asp-avatar>
+            </div>
+            <div style="flex-grow: 1;">
+                <div class="flex-space-between" style="align-items: baseline;">
                     <div class="name-place">
                         <div class="asp-list-value">
                             {{ client.fullName }}
@@ -13,10 +15,10 @@
                         </div>
                     </div>
                 </div>
-                <div class="asp-list-subtext">
+                <div class="asp-list-subtext" style="margin-top: 0.25rem;">
                     {{ client.phoneNumber }}
                 </div>
             </div>
-        </div>
+        </a>
     }
 </div>

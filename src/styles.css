@@ -93,7 +93,7 @@ input,
 select,
 textarea {
   border: var(--input-border);
-  border-radius: 0.5rem;
+  border-radius: 0.75rem;
   padding: 0.75rem 1rem;
   background-color: color-mix(in srgb, var(--clr-primary-10), #000 2%);
 }

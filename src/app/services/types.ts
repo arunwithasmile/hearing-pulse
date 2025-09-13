@@ -9,7 +9,7 @@ export interface Call {
 }
 
 export interface RawClient {
-    id: string;
+    id?: string;
     fullName: string;
     phoneNumber: string;
     place: DocumentReference;

@@ -1,0 +1,21 @@
+form {
+    padding-inline: 1rem;
+}
+
+.form-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.form-field {
+    margin-bottom: 1rem;
+}
+
+.form-actions {
+    margin-block: 2rem;
+}
+
+asp-avatar {
+    display: inline-block;
+    width: fit-content;
+}

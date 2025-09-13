@@ -1,0 +1,23 @@
+@if(client(); as c) {
+    <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+        <header class="form-header">
+            <asp-avatar name="{{ c.fullName }}" size="xl"></asp-avatar>
+            <h2>{{ c.fullName }}</h2>
+        </header>
+
+        <div class="form-field">
+            <input id="fullName" type="text" formControlName="fullName" placeholder="Full Name">
+        </div>
+        <div class="form-field">
+            <input id="phoneNumber" type="tel" formControlName="phoneNumber" placeholder="Phone Number">
+        </div>
+        <div class="form-field">
+            <app-place-autocomplete formControlName="place"></app-place-autocomplete>
+        </div>
+        <div class="form-actions">
+            <button type="submit" [disabled]="editForm.invalid || isSaving()">{{ isSaving() ? 'Saving...' : 'Save Changes' }}</button>
+        </div>
+    </form>
+} @else {
+    <p>Loading client...</p>
+}
