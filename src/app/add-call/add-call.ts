@@ -6,7 +6,7 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { CallService } from '../services/call.service';
 import { ClientService } from '../services/client.service';
 import { Client, Place } from '../services/types';
-import { debounceTime, distinctUntilChanged, firstValueFrom, startWith } from 'rxjs';
+import { debounceTime, distinctUntilChanged, startWith } from 'rxjs';
 import { Avatar } from "../components/avatar/avatar";
 import { DocumentReference, Firestore, doc } from '@angular/fire/firestore';
 import { Tag } from "../components/tag/tag";
@@ -28,7 +28,6 @@ export class AddCallComponent implements OnInit {
   private clientService = inject(ClientService);
   private firestore: Firestore = inject(Firestore);
   private fb = inject(FormBuilder);
-  private router = inject(Router);
   private location = inject(Location);
   public isSaving = signal(false);
 

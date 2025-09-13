@@ -1,7 +1,7 @@
 import { ApplicationConfig, importProvidersFrom, provideZoneChangeDetection } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { getApp, initializeApp, provideFirebaseApp } from '@angular/fire/app';
-import { getFirestore, initializeFirestore, provideFirestore } from '@angular/fire/firestore';
+import { initializeFirestore, provideFirestore } from '@angular/fire/firestore';
 import { getAuth, provideAuth } from '@angular/fire/auth';
 
 import { routes } from './app.routes';
@@ -21,8 +21,7 @@ export const appConfig: ApplicationConfig = {
   providers: [
     importProvidersFrom(BrowserModule),
     provideFirebaseApp(() => initializeApp(firebaseConfig)),
-    provideFirestore(() => getFirestore()), // Connects to default db
-    // provideFirestore(() => initializeFirestore(getApp(), {}, 'pulse')), // Connects to 'pulse' db
+    provideFirestore(() => initializeFirestore(getApp(), {}, 'pulse-db')),
     provideAuth(() => getAuth()),
 
     provideZoneChangeDetection({ eventCoalescing: true }),
