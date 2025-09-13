@@ -10,7 +10,8 @@ import { Component, Input } from '@angular/core';
 
 export class Avatar {
     @Input({ required: true }) name!: string;
-    @Input() size: "sm" | "lg" | undefined;
+    @Input() size: "sm" | "lg" | "xl" | undefined;
+
     protected readonly bgColos = ['#76a2a2', '#b76a43ff', '#698fbc', '#a47665', '#73865d', '#8472a3'];
 
     get initials(): string {
