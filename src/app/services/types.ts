@@ -1,4 +1,4 @@
-import { DocumentReference } from "firebase/firestore/lite";
+import { DocumentReference } from "@angular/fire/firestore";
 
 // Represents the resolved, combined data for a call
 export interface Call {
