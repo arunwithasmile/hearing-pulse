@@ -1,5 +1,5 @@
 import { Injectable, inject } from '@angular/core';
-import { Firestore, Timestamp, collection, collectionData, DocumentReference, query, where } from '@angular/fire/firestore';
+import { Firestore, Timestamp, addDoc, collection, collectionData, DocumentReference, query, where } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 
 export interface Transaction {
@@ -25,5 +25,9 @@ export class KhataService {
             where('transDate', '<=', endDate)
         );
         return collectionData(q, { idField: 'id' }) as Observable<Transaction[]>;
+    }
+
+    addTransaction(transaction: Omit<Transaction, 'id'>): Promise<DocumentReference> {
+        return addDoc(collection(this.firestore, 'khata'), transaction);
     }
 }

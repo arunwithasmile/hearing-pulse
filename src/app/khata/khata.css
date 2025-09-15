@@ -9,7 +9,7 @@
 
 .total {
     display: inline-block;
-    font-size: 1.65rem;
+    font-size: 1.75rem;
     font-weight: 600;
     line-height: 1;
 }
@@ -29,10 +29,12 @@
     }
 }
 
-.credit>div {
-    color: var(--clr-success);
+.add-transaction {
+    position: fixed;
+    bottom: 1.5rem;
+    width: calc(100% - 1rem);
 }
 
-.debit>div {
-    color: var(--clr-error);
+.credit {
+    color: var(--clr-success);
 }

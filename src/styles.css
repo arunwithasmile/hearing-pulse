@@ -116,6 +116,52 @@ button {
   }
 }
 
+.radio-group {
+  border: none;
+  display: flex;
+  gap: 1rem;
+
+  legend {
+    font-size: 0.875rem;
+    color: var(--clr-text-muted);
+    padding-block: 0.25rem;
+  }
+
+  label {
+    flex-grow: 1;
+    border: var(--input-border);
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+
+    &.green {
+      background-color: color-mix(in srgb, var(--clr-success), #0000 90%);
+    }
+
+    &.red {
+      background-color: color-mix(in srgb, var(--clr-error), #0000 90%);
+    }
+
+    &:has(input:checked) {
+      color: white;
+
+      &.green {
+        border-color: var(--clr-success);
+        background-color: var(--clr-success);
+      }
+
+      &.red {
+        border-color: var(--clr-error);
+        background-color: var(--clr-error);
+      }
+    }
+  }
+}
+
+.form-field {
+  margin-bottom: 1rem;
+}
+
 .asp-list {
   background-color: white;
   margin-block: 1rem;
@@ -154,10 +200,12 @@ button {
 }
 
 .form-field label {
-  display: block;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
   font-size: 0.875rem;
   color: var(--clr-text-muted);
-  padding-block: 0.25rem;
+  padding: 0.75rem 1rem;
 }
 
 .card {

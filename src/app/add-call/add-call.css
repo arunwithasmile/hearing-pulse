@@ -9,52 +9,6 @@ form {
     border-radius: 2rem 2rem 0 0;
 }
 
-.form-field {
-    margin-bottom: 1rem;
-}
-
-.radio-group {
-    border: none;
-    display: flex;
-    gap: 1rem;
-
-    legend {
-        font-size: 0.875rem;
-        color: var(--clr-text-muted);
-        padding-block: 0.25rem;
-    }
-
-    label {
-        flex-grow: 1;
-        border: var(--input-border);
-        padding: 0.5rem 1rem;
-        border-radius: 0.5rem;
-        font-size: 1rem;
-
-        &.yes {
-            background-color: color-mix(in srgb, var(--clr-success), #0000 90%);
-        }
-
-        &.no {
-            background-color: color-mix(in srgb, var(--clr-error), #0000 90%);
-        }
-
-        &:has(input:checked) {
-            color: white;
-
-            &.yes {
-                border-color: var(--clr-success);
-                background-color: var(--clr-success);
-            }
-
-            &.no {
-                border-color: var(--clr-error);
-                background-color: var(--clr-error);
-            }
-        }
-    }
-}
-
 .autocomplete-list {
     box-shadow: 0 1px 8px #0004;
     border-radius: 0.75rem;
