@@ -65,9 +65,7 @@ export class CallService {
                     if (client) {
                         (client.calls as any[]).push({
                             ...call,
-                            dateTime: this.convertToDateTime(call.timestamp),
                             duration: this.convertToText(call.durationMills),
-                            followUpDateTime: this.convertToDateTime(call.followUpTimestamp)
                         });
                     };
                 }
@@ -75,33 +73,6 @@ export class CallService {
                 return Array.from(clientsWithCalls.values());
             })
         );
-    }
-
-    // TODO Make it a pipe
-    private convertToDateTime(timestamp: Timestamp | undefined): string {
-        if (!timestamp) {
-            return '';
-        }
-        const callDate = timestamp.toDate();
-        const now = new Date();
-
-        const isCurrentYear = callDate.getFullYear() === now.getFullYear();
-
-        // Check if the call was made today
-        const isToday = isCurrentYear &&
-            callDate.getMonth() === now.getMonth() &&
-            callDate.getDate() === now.getDate();
-
-        if (isToday) {
-            // Format as hh:mm am/pm
-            return callDate.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true });
-        } else if (isCurrentYear) {
-            // Format as dd MMM for dates in the current year but not today
-            return callDate.toLocaleDateString('en-GB', { day: '2-digit', month: 'short' });
-        } else {
-            // Format as dd MMM yyyy for dates in previous years
-            return callDate.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
-        }
     }
 
     private convertToText(durationMillis: string): string {
