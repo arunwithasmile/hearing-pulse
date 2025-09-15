@@ -36,7 +36,7 @@
 .add-transaction {
     position: fixed;
     bottom: 1.5rem;
-    width: calc(100% - 1rem);
+    width: calc(min(100%, var(--container-width)) - 2 * var(--container-padding));
 }
 
 .credit {
