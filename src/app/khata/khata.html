@@ -1,15 +1,15 @@
 <div class="total-card">
-    <div class="total">{{ total() | currency :'INR':'symbol':'1.0-0' }}</div>
+    <div class="total">{{ total() | inr }}</div>
     <small>Month Total</small>
 </div>
 <div class="flex kpis">
     <div class="card kpi">
         <small>Income</small>
-        <div class="credit">{{ income() | currency :'INR':'symbol':'1.0-0' }}</div>
+        <div class="credit">{{ income() | inr }}</div>
     </div>
     <div class="card kpi">
         <small>Expenses</small>
-        <div>{{ expenses() | currency :'INR':'symbol':'1.0-0' }}</div>
+        <div>{{ expenses() | inr }}</div>
     </div>
 </div>
 <div class="asp-list">
@@ -21,7 +21,7 @@
                     <div>
                         {{trans.title}}
                     </div>
-                    <div [class.credit]="trans.type === 'credit'">{{ trans.amount | currency :'INR':'symbol':'1.0-0' }}</div>
+                    <div [class.credit]="trans.type === 'credit'">{{ trans.amount | inr }}</div>
                 </div>
                 <div class="asp-list-subtext">{{ trans.transDate | date }}</div>
             </div>

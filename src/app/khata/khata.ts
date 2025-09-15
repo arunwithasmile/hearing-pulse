@@ -1,13 +1,13 @@
-import { CurrencyPipe } from '@angular/common';
 import { Component, Signal, computed, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { RouterLink } from '@angular/router';
 import { KhataService, Transaction } from './khata.service';
 import { DatePipe } from '../pipes/date.pipe';
+import { InrPipe } from '../pipes/inr.pipe';
 
 @Component({
   selector: 'app-khata',
-  imports: [CurrencyPipe, DatePipe, RouterLink],
+  imports: [DatePipe, RouterLink, InrPipe],
   templateUrl: './khata.html',
   styleUrl: './khata.css',
   standalone: true,
