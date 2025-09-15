@@ -29,6 +29,10 @@
     }
 }
 
+.asp-list {
+    margin-block: 1rem 6rem;
+}
+
 .add-transaction {
     position: fixed;
     bottom: 1.5rem;
