@@ -192,6 +192,9 @@ button {
 
 .asp-list-subtext {
   color: var(--clr-text-muted);
+  display: flex;
+  gap: 0.5rem;
+  align-items: baseline;
 }
 
 .asp-list-tiny-subtext {
