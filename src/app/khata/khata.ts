@@ -21,6 +21,11 @@ export class Khata {
   total = computed(() => this.income() - this.expenses());
 
   constructor() {
-    this.transactions = toSignal(this.khataService.getTransactions(), { initialValue: [] });
+    const now = new Date();
+    const firstDay = new Date(now.getFullYear(), now.getMonth(), 1);
+    const lastDay = new Date(now.getFullYear(), now.getMonth() + 1, 0);
+    lastDay.setHours(23, 59, 59, 999); // Ensure we include the entire last day
+
+    this.transactions = toSignal(this.khataService.getTransactions(firstDay, lastDay), { initialValue: [] });
   }
 }

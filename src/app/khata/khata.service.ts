@@ -1,5 +1,5 @@
 import { Injectable, inject } from '@angular/core';
-import { Firestore, Timestamp, collection, collectionData, DocumentReference } from '@angular/fire/firestore';
+import { Firestore, Timestamp, collection, collectionData, DocumentReference, query, where } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 
 export interface Transaction {
@@ -17,8 +17,13 @@ export interface Transaction {
 export class KhataService {
     private firestore: Firestore = inject(Firestore);
 
-    getTransactions(): Observable<Transaction[]> {
+    getTransactions(startDate: Date, endDate: Date): Observable<Transaction[]> {
         const khataCollection = collection(this.firestore, 'khata');
-        return collectionData(khataCollection, { idField: 'id' }) as Observable<Transaction[]>;
+        const q = query(
+            khataCollection,
+            where('transDate', '>=', startDate),
+            where('transDate', '<=', endDate)
+        );
+        return collectionData(q, { idField: 'id' }) as Observable<Transaction[]>;
     }
 }
