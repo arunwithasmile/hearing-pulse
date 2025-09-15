@@ -55,7 +55,7 @@ export class CallService {
                     return [client.id, {
                         ...client,
                         place: placesMap.get(client.place.id)?.name ?? 'Unknown Place',
-                        calls: []
+                        calls: [] as (RawCall & { duration: string })[]
                     }];
                 }));
 
@@ -63,14 +63,22 @@ export class CallService {
                 for (const call of calls) {
                     const client = clientsWithCalls.get(call.client.id);
                     if (client) {
-                        (client.calls as any[]).push({
+                        client.calls.push({
                             ...call,
                             duration: this.convertToText(call.durationMills),
                         });
                     };
                 }
 
-                return Array.from(clientsWithCalls.values());
+                const sortedClients = Array.from(clientsWithCalls.values())
+                    .sort((a, b) => {
+                        // If a client has no calls, they should appear after clients with calls.
+                        if (a.calls.length === 0) return 1;
+                        if (b.calls.length === 0) return -1;
+                        // The calls are already sorted desc, so the first call is the latest.
+                        return b.calls[0].timestamp.toMillis() - a.calls[0].timestamp.toMillis();
+                    });
+                return sortedClients;
             })
         );
     }

@@ -16,12 +16,20 @@ export class DatePipe implements PipeTransform {
 
         const isCurrentYear = callDate.getFullYear() === now.getFullYear();
 
-        const isToday = isCurrentYear &&
-            callDate.getMonth() === now.getMonth() &&
-            callDate.getDate() === now.getDate();
+        // Calculate the date 5 days ago from now.
+        const fiveDaysAgo = new Date();
+        fiveDaysAgo.setDate(now.getDate() - 5);
+        fiveDaysAgo.setHours(0, 0, 0, 0); // Set to the beginning of that day for a clean comparison.
 
-        if (isToday) {
-            return callDate.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true });
+        const isLastFiveDays = callDate >= fiveDaysAgo;
+
+        if (isLastFiveDays) {
+            const time = callDate.toLocaleTimeString('en-US', { hour: 'numeric', hour12: true });
+            const day = callDate.toLocaleDateString('en-GB', { weekday: 'short' });
+            if (day === new Date().toLocaleDateString('en-GB', { weekday: 'short' })) {
+                return time;
+            }
+            return `${time} ${day}`;
         } else if (isCurrentYear) {
             return callDate.toLocaleDateString('en-GB', { day: '2-digit', month: 'short' });
         } else {

@@ -178,6 +178,12 @@ button {
   &:not(:last-child) {
     border-bottom: 1px solid #eee;
   }
+
+  .titile-right-subtext {
+    font-size: 0.875rem;
+    color: var(--clr-text-muted);
+    align-items: baseline;
+  }
 }
 
 .asp-list-value {
@@ -185,8 +191,12 @@ button {
 }
 
 .asp-list-subtext {
-  font-size: 0.875rem;
   color: var(--clr-text-muted);
+}
+
+.asp-list-tiny-subtext {
+  color: var(--clr-text-subtle);
+  font-size: 0.875rem;
 }
 
 .flex {

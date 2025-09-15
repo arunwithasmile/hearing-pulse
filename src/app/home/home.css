@@ -8,12 +8,6 @@
     gap: 0.5rem;
 }
 
-.time-duration {
-    font-size: 0.875rem;
-    color: var(--clr-text-muted);
-    align-items: baseline;
-}
-
 .add-call {
     position: fixed;
     bottom: 1.5rem;

@@ -15,12 +15,13 @@
                             {{ client.place }}
                         </div>
                     </div>
-                    <div class="time-duration">
+                    <div class="titile-right-subtext">
                         {{ client.calls.length + ` Call` + (client.calls.length === 1 ? `` : `s`) }}
                     </div>
                 </div>
                 <div class="asp-list-subtext">
                     {{ client.calls[0]?.summary }}
+                    <span class="asp-list-tiny-subtext">{{client.calls[0]?.timestamp | date}}</span>
                 </div>
             </div>
         </a>
