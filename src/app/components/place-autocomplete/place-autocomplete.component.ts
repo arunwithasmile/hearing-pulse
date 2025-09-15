@@ -1,9 +1,9 @@
 import { Component, forwardRef, inject, Input, Signal, WritableSignal, computed, signal } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
-import { ClientService } from '../services/client.service';
+import { ClientService } from '../../services/client.service';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { CommonModule } from '@angular/common';
-import { Place } from '../services/types';
+import { Place } from '../../services/types';
 
 @Component({
     selector: 'app-place-autocomplete',

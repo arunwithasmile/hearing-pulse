@@ -10,7 +10,7 @@ import { debounceTime, distinctUntilChanged, startWith } from 'rxjs';
 import { Avatar } from "../components/avatar/avatar";
 import { DocumentReference, Firestore, doc } from '@angular/fire/firestore';
 import { Tag } from "../components/tag/tag";
-import { PlaceAutocompleteComponent } from '../client-edit/place-autocomplete.component';
+import { PlaceAutocompleteComponent } from '../components/place-autocomplete/place-autocomplete.component';
 
 @Component({
   selector: 'app-add-call',

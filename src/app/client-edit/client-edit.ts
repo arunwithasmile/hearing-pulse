@@ -8,7 +8,7 @@ import { map, switchMap } from 'rxjs';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Location } from '@angular/common';
 import { Avatar } from "../components/avatar/avatar";
-import { PlaceAutocompleteComponent } from './place-autocomplete.component';
+import { PlaceAutocompleteComponent } from '../components/place-autocomplete/place-autocomplete.component';
 
 @Component({
   selector: 'app-client-edit',
