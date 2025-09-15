@@ -28,3 +28,11 @@
         font-weight: 500;
     }
 }
+
+.credit>div {
+    color: var(--clr-success);
+}
+
+.debit>div {
+    color: var(--clr-error);
+}
