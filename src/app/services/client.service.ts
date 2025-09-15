@@ -19,7 +19,7 @@ export class ClientService {
                 return clients.map(client => {
                     return {
                         ...client,
-                        place: placesMap.get(client.place.id) ?? 'Unknown Place'
+                        place: placesMap.get(client.place?.id) ?? 'Unknown Place'
                     } as Client;
                 });
             })
@@ -33,6 +33,10 @@ export class ClientService {
                 switchMap(client => {
                     if (!client) {
                         return of(undefined); // If no client, return an observable of undefined
+                    }
+
+                    if (!client.place?.path) {
+                        return of({ ...client, place: '' } as Client);
                     }
                     const placeDocRef = doc(this.firestore, client.place.path);
                     return (docData(placeDocRef) as Observable<Place>).pipe(
