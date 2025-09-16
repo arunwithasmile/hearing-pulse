@@ -1,7 +1,8 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, signal, OnInit, OnDestroy } from '@angular/core';
 import { Auth, signInWithEmailAndPassword } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
     selector: 'app-login',
@@ -10,7 +11,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
     templateUrl: './login.component.html',
     styleUrl: './login.component.css'
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit, OnDestroy {
     loginForm: FormGroup;
     errorMessage = signal<string | null>(null);
     showPassword = signal(false);
@@ -18,12 +19,23 @@ export class LoginComponent {
     private auth: Auth = inject(Auth);
     private router: Router = inject(Router);
     private fb: FormBuilder = inject(FormBuilder);
+    private header = inject(DOCUMENT).querySelector('header');
 
     constructor() {
         this.loginForm = this.fb.group({
             email: ['', [Validators.required, Validators.email]],
             password: ['', Validators.required]
         });
+    }
+
+    ngOnInit(): void {
+        if (this.header) {
+            this.header.style.display = 'none';
+        }
+    }
+
+    ngOnDestroy(): void {
+        this.header?.style.removeProperty('display');
     }
 
     async login() {
