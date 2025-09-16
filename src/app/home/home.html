@@ -3,9 +3,11 @@
 </div>
 <div class="asp-list">
     @for (client of clients(); track client.fullName) {
-        <a href="tel:{{client.phoneNumber}}" class="asp-list-item call">
-            <asp-avatar name="{{ client.fullName }}"></asp-avatar>
-            <div style="flex-grow: 1">
+        <div class="asp-list-item call">
+            <a [routerLink]="['/client', client.id]">
+                <asp-avatar name="{{ client.fullName }}"></asp-avatar>
+            </a>
+            <a href="tel:{{client.phoneNumber}}" style="width: calc(100% - 55px);">
                 <div class="flex-space-between">
                     <div class="name-place">
                         <div class="asp-list-value">
@@ -23,8 +25,8 @@
                     {{ client.calls[0]?.summary }}
                     <span class="asp-list-tiny-subtext">{{client.calls[0]?.timestamp | date}}</span>
                 </div>
-            </div>
-        </a>
+            </a>
+        </div>
     }
 </div>
 <button class="khata" routerLink="/khata">₹</button>
