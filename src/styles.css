@@ -183,11 +183,15 @@ button {
     font-size: 0.875rem;
     color: var(--clr-text-muted);
     align-items: baseline;
+    white-space: nowrap;
   }
 }
 
 .asp-list-value {
   font-size: 1.125rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .asp-list-subtext {
@@ -200,6 +204,9 @@ button {
 .asp-list-tiny-subtext {
   color: var(--clr-text-subtle);
   font-size: 0.875rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .flex {

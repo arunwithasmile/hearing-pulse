@@ -6,6 +6,11 @@
     display: flex;
     align-items: baseline;
     gap: 0.5rem;
+    max-width: calc(100% - 55px);
+}
+
+.asp-list-subtext .asp-list-tiny-subtext {
+    flex-shrink: 0;
 }
 
 .add-call {
