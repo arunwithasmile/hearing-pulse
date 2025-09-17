@@ -1,5 +1,5 @@
 import { Injectable, inject } from '@angular/core';
-import { Firestore, Timestamp, addDoc, collection, collectionData, DocumentReference, query, where } from '@angular/fire/firestore';
+import { Firestore, Timestamp, addDoc, collection, collectionData, DocumentReference, query, where, orderBy } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 
 export interface Transaction {
@@ -22,7 +22,8 @@ export class KhataService {
         const q = query(
             khataCollection,
             where('transDate', '>=', startDate),
-            where('transDate', '<=', endDate)
+            where('transDate', '<=', endDate),
+            orderBy('transDate', 'desc')
         );
         return collectionData(q, { idField: 'id' }) as Observable<Transaction[]>;
     }
