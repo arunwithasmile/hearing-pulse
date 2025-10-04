@@ -1,8 +1,9 @@
 import { Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { KhataService } from '../khata/khata.service';
+import { KhataService } from '../services/khata.service';
 import { Timestamp } from '@angular/fire/firestore';
+import { getLocalISOString } from '../utils';
 
 @Component({
     selector: 'app-add-khata',
@@ -20,7 +21,7 @@ export class AddKhataComponent {
         title: ['', Validators.required],
         amount: [null, [Validators.required, Validators.min(0.01)]],
         type: ['credit', Validators.required],
-        transDate: [new Date().toISOString().substring(0, 16), Validators.required]
+        transDate: [getLocalISOString(new Date()), Validators.required]
     });
 
     isSaving = false;

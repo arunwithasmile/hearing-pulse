@@ -11,6 +11,7 @@ import { Avatar } from "../components/avatar/avatar";
 import { DocumentReference, Firestore, doc } from '@angular/fire/firestore';
 import { Tag } from "../components/tag/tag";
 import { PlaceAutocompleteComponent } from '../components/place-autocomplete/place-autocomplete.component';
+import { getLocalISOString } from '../utils';
 
 @Component({
   selector: 'app-add-call',
@@ -47,7 +48,7 @@ export class AddCallComponent implements OnInit {
       fullName: [''],
       phoneNumber: ['+91 '],
       place: [''], // For display and for creating a new place
-      callDateTime: [this.getCurrentLocalISOString(), Validators.required],
+      callDateTime: [getLocalISOString(new Date()), Validators.required],
       callDuration: [''],
       summary: ['', Validators.required],
       wasSuccessful: [true],
@@ -146,16 +147,5 @@ export class AddCallComponent implements OnInit {
       control?.setValidators(validator);
       control?.updateValueAndValidity();
     }
-  }
-
-  private getCurrentLocalISOString(): string {
-    const now = new Date();
-    // Adjust for the local timezone offset to get the correct local time for the input default
-    const localDate = new Date(now.getTime() - (now.getTimezoneOffset() * 60000));
-    // The `datetime-local` input requires an ISO string without the 'Z' (which denotes UTC)
-    // and without milliseconds.
-    const isoString = localDate.toISOString();
-    // Return the part before the milliseconds, e.g., "2024-01-01T12:30"
-    return isoString.substring(0, isoString.lastIndexOf(':'));
   }
 }
