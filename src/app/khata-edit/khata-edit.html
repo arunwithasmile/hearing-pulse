@@ -1,0 +1,32 @@
+<div class="form-container">
+    <header class="form-header">
+        Edit Transaction
+    </header>
+
+    <form [formGroup]="transactionForm" (ngSubmit)="onSubmit()">
+        <div class="form-field">
+            <label for="title">Title</label>
+            <input id="title" type="text" formControlName="title" placeholder="e.g., Office Supplies">
+        </div>
+
+        <div class="form-field">
+            <label for="amount">Amount &#8377;</label>
+            <input id="amount" type="number" formControlName="amount" placeholder="0.00">
+        </div>
+
+        <fieldset class="form-field radio-group">
+            <legend>Transaction Type</legend>
+            <label class="credit green"><input type="radio" value="credit" formControlName="type">Income</label>
+            <label class="debit red"><input type="radio" value="debit" formControlName="type">Expense</label>
+        </fieldset>
+
+        <div class="form-field">
+            <label for="transDate">Date & Time</label>
+            <input id="transDate" type="datetime-local" formControlName="transDate">
+        </div>
+
+        <div class="form-actions">
+            <button type="submit" [disabled]="transactionForm.invalid || isSaving">{{ isSaving ? 'Saving...' : 'Save Transaction' }}</button>
+        </div>
+    </form>
+</div>

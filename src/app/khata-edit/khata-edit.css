@@ -1,0 +1,14 @@
+header {
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+form {
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 2rem 2rem 0 0;
+}
+
+.form-actions {
+    margin-top: 2rem;
+}

@@ -33,6 +33,24 @@
     margin-block: 1rem 6rem;
 }
 
+.asp-list-subtext {
+    justify-content: space-between;
+
+    button {
+        padding-block: 0;
+        font-size: 1rem;
+    }
+}
+
+.asp-list-item button {
+    width: fit-content;
+    display: none;
+}
+
+.asp-list-item:hover button {
+    display: block;
+}
+
 .add-transaction {
     position: fixed;
     bottom: 1.5rem;

@@ -116,6 +116,12 @@ button {
   }
 }
 
+button.outlined {
+  background: transparent;
+  box-shadow: 0 0 0 1px var(--clr-primary-600);
+  color: var(--clr-primary-600);
+}
+
 .radio-group {
   border: none;
   display: flex;

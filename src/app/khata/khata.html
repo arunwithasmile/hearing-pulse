@@ -23,7 +23,10 @@
                     </div>
                     <div [class.credit]="trans.type === 'credit'">{{ trans.amount | inr }}</div>
                 </div>
-                <div class="asp-list-subtext">{{ trans.transDate | date }}</div>
+                <div class="asp-list-subtext">
+                    <div>{{ trans.transDate | date }}</div>
+                    <button class="outlined" [routerLink]="['/khata', trans.id]">Edit</button>
+                </div>
             </div>
         </div>
     }
