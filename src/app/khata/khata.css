@@ -17,6 +17,11 @@
             padding: 4px;
             font-size: inherit;
             box-shadow: none;
+            opacity: 0;
+        }
+
+        &:hover button {
+            opacity: 1;
         }
     }
 }
