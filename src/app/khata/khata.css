@@ -1,9 +1,23 @@
 .total-card {
     padding-inline: 1rem;
+    display: flex;
+    align-items: baseline;
 
     small {
+        flex-grow: 1;
         padding-inline: 0.5rem;
         color: var(--clr-text-muted);
+
+        span {
+            margin-right: 1rem;
+        }
+
+        button {
+            width: fit-content;
+            padding: 4px;
+            font-size: inherit;
+            box-shadow: none;
+        }
     }
 }
 

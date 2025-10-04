@@ -1,6 +1,14 @@
 <div class="total-card">
     <div class="total">{{ total() | inr }}</div>
-    <small>Month Total</small>
+    <small>
+        <span>{{monthName()}} Total</span>
+        <button class="outlined" (click)="prevMonth()">
+            <fa-icon [icon]="faAngleLeft"></fa-icon>
+        </button>
+        <button class="outlined" (click)="nextMonth()">
+            <fa-icon [icon]="faAngleRight"></fa-icon>
+        </button>
+    </small>
 </div>
 <div class="flex kpis">
     <div class="card kpi">
