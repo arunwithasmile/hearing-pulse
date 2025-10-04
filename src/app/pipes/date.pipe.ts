@@ -24,7 +24,7 @@ export class DatePipe implements PipeTransform {
         const isLastFiveDays = callDate >= fiveDaysAgo;
 
         if (isLastFiveDays) {
-            const time = callDate.toLocaleTimeString('en-US', { hour: 'numeric', hour12: true });
+            const time = callDate.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true });
             const day = callDate.toLocaleDateString('en-GB', { weekday: 'short' });
             if (day === new Date().toLocaleDateString('en-GB', { weekday: 'short' })) {
                 return time;
