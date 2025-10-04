@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
-import { Firestore, Timestamp, addDoc, collection, collectionData, DocumentReference, query, where, orderBy } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
+import { Firestore, Timestamp, addDoc, collection, collectionData, DocumentReference, query, where, orderBy, doc, updateDoc, docData } from '@angular/fire/firestore';
+import { Observable, of } from 'rxjs';
 
 export interface Transaction {
     id: string;
@@ -30,5 +30,18 @@ export class KhataService {
 
     addTransaction(transaction: Omit<Transaction, 'id'>): Promise<DocumentReference> {
         return addDoc(collection(this.firestore, 'khata'), transaction);
+    }
+
+    getTransactionById(id: string | null): Observable<Transaction | undefined> {
+        if (!id) {
+            return of(undefined);
+        }
+        const transactionDocRef = doc(this.firestore, `khata/${id}`);
+        return docData(transactionDocRef, { idField: 'id' }) as Observable<Transaction>;
+    }
+
+    updateTransaction(transaction: Partial<Transaction>): Promise<void> {
+        const transactionDocRef = doc(this.firestore, `khata/${transaction.id}`);
+        return updateDoc(transactionDocRef, transaction);
     }
 }

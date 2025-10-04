@@ -1,7 +1,7 @@
 import { Component, Signal, computed, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { RouterLink } from '@angular/router';
-import { KhataService, Transaction } from './khata.service';
+import { KhataService, Transaction } from '../services/khata.service';
 import { DatePipe } from '../pipes/date.pipe';
 import { InrPipe } from '../pipes/inr.pipe';
 
